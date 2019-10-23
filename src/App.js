@@ -2,7 +2,9 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { Text, ScrollView, StyleSheet, StatusBar } from 'react-native'
 import { apikey } from './config'
 import TMDB from './api-tmdb'
-import { AppContent, TitleContent, Title } from './shared/styles'
+import Title from './components/Title'
+import Searcher from './components/Searcher'
+import { AppContent } from './shared/styles'
 
 const App = () => {
   const api = new TMDB(apikey)
@@ -11,23 +13,20 @@ const App = () => {
 
   useEffect(() => {
     ;(async () => {
-      // const popular = await api.getpopularMovies()
       const popular = await Promise.all([
         api.getpopularMovies(),
         api.getpopularMovies(2)
       ])
-      console.log(popular)
       setPopular([...popular[0].results, ...popular[1].results])
     })()
-  }, [api])
+  }, [])
 
   return (
     <Fragment>
       <StatusBar backgroundColor="black" barStyle="light-content" />
       <AppContent>
-        <TitleContent>
-          <Title>EMDB</Title>
-        </TitleContent>
+        <Title />
+        <Searcher />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           {popularMovies.map(movie => (
             <Text style={styles.list} key={movie.id}>

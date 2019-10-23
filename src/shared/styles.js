@@ -1,17 +1,13 @@
 import styled from 'styled-components/native'
 
+export const Colors = {
+  darkGray: '#1c202a',
+  softGray: '#686e75',
+  accent: '#1ed1c2',
+  black: '#000000'
+}
+
 export const AppContent = styled.SafeAreaView`
   flex: 1;
-  background-color: black;
-`
-
-export const TitleContent = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-`
-export const Title = styled.Text`
-  color: #0fd7c4;
-  font-size: 50px;
-  font-weight: bold;
+  background-color: ${Colors.black};
 `

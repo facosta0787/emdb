@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Text, ScrollView, StyleSheet, StatusBar } from 'react-native'
+import NavigationBar from 'react-native-navbar-color'
 import { apikey } from './config'
 import TMDB from './api-tmdb'
 import Title from './components/Title'
@@ -12,6 +13,7 @@ const App = () => {
   const [popularMovies, setPopular] = useState([])
 
   useEffect(() => {
+    NavigationBar.setColor('black')
     ;(async () => {
       const popular = await Promise.all([
         api.getpopularMovies(),
@@ -27,9 +29,12 @@ const App = () => {
       <AppContent>
         <Title />
         <Searcher />
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.list}
+        >
           {popularMovies.map(movie => (
-            <Text style={styles.list} key={movie.id}>
+            <Text style={styles.listItem} key={movie.id}>
               {movie.title}
             </Text>
           ))}
@@ -43,6 +48,9 @@ export default App
 
 const styles = StyleSheet.create({
   list: {
+    marginTop: 10
+  },
+  listItem: {
     color: 'white'
   }
 })

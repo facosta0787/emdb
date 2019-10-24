@@ -19,7 +19,11 @@ const App = () => {
         api.getpopularMovies(),
         api.getpopularMovies(2)
       ])
-      setPopular([...popular[0].results, ...popular[1].results])
+      setPopular(
+        popular.reduce((movies, current) => {
+          return [...movies, ...current.results]
+        }, [])
+      )
     })()
   }, [])
 

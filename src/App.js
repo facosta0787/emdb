@@ -16,8 +16,8 @@ const App = () => {
     NavigationBar.setColor('black')
     ;(async () => {
       const popular = await Promise.all([
-        api.getpopularMovies(),
-        api.getpopularMovies(2)
+        api.getPremiereMovies(),
+        api.getPremiereMovies(2)
       ])
       setPopular(
         popular.reduce((movies, current) => {

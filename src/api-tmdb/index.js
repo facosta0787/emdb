@@ -1,16 +1,12 @@
 import axios from 'axios'
+import { apikey } from '../config'
 
 axios.interceptors.request.use(config => {
   config.params = config.params || {}
-  config.params.api_key = '6463c6109b2b91a0af69c0d15d05ce63'
+  config.params.api_key = apikey
   return config
 })
-
 class Tmdb {
-  constructor(apikey) {
-    this.apikey = apikey
-  }
-
   BASE_URL = 'https://api.themoviedb.org/3'
 
   async getPopularMovies(page = 1, language = 'en-US') {

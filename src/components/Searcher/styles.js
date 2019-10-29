@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 export const InputWrapper = styled.View`
   flex-direction: row;
-  width: 95%;
+  width: 100%;
   background-color: ${Colors.darkGray};
   border-radius: 25px;
 `

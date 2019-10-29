@@ -9,8 +9,8 @@ module.exports = {
     'no-unused-vars': [
       'error',
       {
-        args: 'after-used'
-      }
+        args: 'after-used',
+      },
     ],
     'react-native/no-inline-styles': 'off',
     'func-names': 'off',
@@ -19,6 +19,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-fragments': 'off',
-    'import/prefer-default-export': 'off'
-  }
-}
+    'import/prefer-default-export': 'off',
+  },
+};

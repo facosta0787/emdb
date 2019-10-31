@@ -4,7 +4,7 @@ import { TitleContent, Title } from './styles'
 const TitleComponent = () => {
   return (
     <TitleContent>
-      <Title>EMDB</Title>
+      <Title>UVIES</Title>
     </TitleContent>
   )
 }

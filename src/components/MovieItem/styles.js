@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { Colors } from '../../shared/styles'
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
   width: ${props => (props.poster ? '154px' : '300px')};
   margin-right: 15px;
 `

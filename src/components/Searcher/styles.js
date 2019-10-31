@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 import { Colors } from '../../shared/styles'
-import IconBase from 'react-native-vector-icons/FontAwesome'
+import IconBase from 'react-native-vector-icons/FontAwesome5'
 
 export const Container = styled.View`
   flex-direction: row;

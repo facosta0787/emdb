@@ -6,7 +6,8 @@ import Searcher from '../components/Searcher'
 import MoviesList from '../components/MoviesList'
 import { SafeAreaView, AppContent } from '../shared/styles'
 
-const Home = () => {
+const Home = props => {
+  console.log(props)
   useEffect(() => {
     NavigationBar.setColor('black')
   }, [])
@@ -18,7 +19,7 @@ const Home = () => {
         <AppContent>
           <Title />
           <Searcher />
-          <MoviesList title="Premieres" data={premiere} />
+          <MoviesList title="Premier" data={premiere} />
           <MoviesList title="Popular Now" data={popularNow} poster />
         </AppContent>
       </SafeAreaView>

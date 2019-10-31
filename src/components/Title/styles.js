@@ -9,5 +9,5 @@ export const TitleContent = styled.View`
 export const Title = styled.Text`
   color: ${Colors.accent};
   font-size: 45px;
-  font-weight: bold;
+  font-weight: normal;
 `

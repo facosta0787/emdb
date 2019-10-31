@@ -10,7 +10,7 @@ const MoviesList = ({ title, data, poster }) => {
         horizontal
         data={data}
         renderItem={item => <MovieItem {...item} poster={poster} />}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
       />
     </Layout>
   )

@@ -8,9 +8,12 @@ export const Colors = {
   white: '#ffffff'
 }
 
-export const AppContent = styled.SafeAreaView`
+export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
   background-color: ${Colors.black};
+`
+
+export const AppContent = styled.View`
   padding-left: 15px;
   padding-right: 15px;
 `

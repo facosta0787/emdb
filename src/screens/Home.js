@@ -4,7 +4,7 @@ import NavigationBar from 'react-native-navbar-color'
 import Title from '../components/Title'
 import Searcher from '../components/Searcher'
 import MoviesList from '../components/MoviesList'
-import { AppContent } from '../shared/styles'
+import { SafeAreaView, AppContent } from '../shared/styles'
 
 const Home = () => {
   useEffect(() => {
@@ -14,12 +14,14 @@ const Home = () => {
   return (
     <Fragment>
       <StatusBar backgroundColor="black" barStyle="light-content" />
-      <AppContent>
-        <Title />
-        <Searcher />
-        <MoviesList title="Premieres" data={premiere} />
-        <MoviesList title="Popular Now" data={popularNow} poster />
-      </AppContent>
+      <SafeAreaView>
+        <AppContent>
+          <Title />
+          <Searcher />
+          <MoviesList title="Premieres" data={premiere} />
+          <MoviesList title="Popular Now" data={popularNow} poster />
+        </AppContent>
+      </SafeAreaView>
     </Fragment>
   )
 }

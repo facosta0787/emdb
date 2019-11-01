@@ -7,7 +7,6 @@ import MoviesList from '../components/MoviesList'
 import { SafeAreaView, AppContent } from '../shared/styles'
 
 const Home = props => {
-  console.log(props)
   useEffect(() => {
     NavigationBar.setColor('black')
   }, [])

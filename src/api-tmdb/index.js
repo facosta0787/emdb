@@ -1,18 +1,34 @@
 import axios from 'axios'
-import { apikey } from '../config'
+import appconfig from '../config/index'
+const { apikey } = appconfig
+
+axios.defaults.baseURL = 'https://api.themoviedb.org/3'
 
 axios.interceptors.request.use(config => {
-  config.params = config.params || {}
-  config.params.api_key = apikey
+  config.params = {
+    ...config.params,
+    api_key: apikey
+  }
   return config
 })
+
 class Tmdb {
-  BASE_URL = 'https://api.themoviedb.org/3'
+  get imageBaseUrl() {
+    return 'https://image.tmdb.org/t/p/w500_and_h282_face'
+  }
+
+  async getMovieById(id) {
+    try {
+      const movie = await axios.get(`/movie/${id}`)
+      return movie.data
+    } catch (err) {
+      return err
+    }
+  }
 
   async getPopularMovies(page = 1, language = 'en-US') {
     try {
       const popular = await axios.get('/movie/popular', {
-        baseURL: this.BASE_URL,
         params: {
           page,
           language
@@ -27,7 +43,6 @@ class Tmdb {
   async getPremiereMovies(page = 1, language = 'en-US') {
     try {
       const premieres = await axios.get('/movie/upcoming', {
-        baseURL: this.BASE_URL,
         params: {
           page,
           language
@@ -40,4 +55,4 @@ class Tmdb {
   }
 }
 
-export default Tmdb
+export default new Tmdb()

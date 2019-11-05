@@ -31,23 +31,9 @@ const getTabIcon = (navigation, focused, tintColor) => {
   return <Icon name={iconName} size={18} color={tintColor} regular />
 }
 
-const HomeStack = createStackNavigator(
-  {
-    Home,
-    'Movies Detail': {
-      screen: MoviesDetail
-    }
-  },
-  {
-    headerMode: 'none'
-  }
-)
-
 const TabNavigator = createBottomTabNavigator(
   {
-    Home: {
-      screen: HomeStack
-    },
+    Home,
     'TV Shows': { screen: TVShows },
     Favorites,
     Profile
@@ -66,4 +52,17 @@ const TabNavigator = createBottomTabNavigator(
     }
   }
 )
-export default createAppContainer(TabNavigator)
+
+const HomeStack = createStackNavigator(
+  {
+    Categories: { screen: TabNavigator },
+    'Movies Detail': {
+      screen: MoviesDetail
+    }
+  },
+  {
+    headerMode: 'none'
+  }
+)
+
+export default createAppContainer(HomeStack)

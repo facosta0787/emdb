@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ActivityIndicator, Alert, PixelRatio } from 'react-native'
+import { ActivityIndicator, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import styled from 'styled-components/native'
 import { Colors } from '../shared/styles'
@@ -11,7 +11,6 @@ const MoviesDetail = props => {
   const [movie, setMovie] = useState(null)
 
   useEffect(() => {
-    console.log(PixelRatio.getPixelSizeForLayoutSize(200))
     const fetchMovie = async () => {
       try {
         const response = await api.getMovieById(id)
@@ -24,6 +23,15 @@ const MoviesDetail = props => {
     }
     fetchMovie()
   }, [id])
+
+  const renderYear = () => {
+    const year = new Date(movie.release_date)
+    return String(year.getFullYear())
+  }
+
+  const renderGenres = () => {
+    return movie.genres.map(gender => gender.name).join(', ')
+  }
 
   if (movie === null)
     return (
@@ -48,6 +56,12 @@ const MoviesDetail = props => {
       />
       <DetailsContainer>
         <Title>{movie.title}</Title>
+        <Caption>{`${renderYear()} · ${renderGenres()}`}</Caption>
+        <ChipsContainer>
+          <Chip>IMDb: 7.1</Chip>
+          <Chip>4K UHD</Chip>
+          <Chip>PG-13</Chip>
+        </ChipsContainer>
       </DetailsContainer>
     </Container>
   )
@@ -68,6 +82,12 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 25px;
   color: ${Colors.white};
+  margin-bottom: 8px;
+`
+
+const Caption = styled.Text`
+  color: ${Colors.softGray};
+  font-size: 14px;
 `
 const BackDropImage = styled.Image`
   width: 100%;
@@ -81,4 +101,40 @@ const BackButton = styled.TouchableOpacity`
   left: 20px;
   z-index: 1;
 `
+
+const ChipsContainer = styled.View`
+  margin-top: 20px;
+  flex-direction: row;
+  align-self: flex-start;
+`
+
+const Chip = ({ children }) => {
+  const ChipContainer = styled.View`
+    margin-right: 5px;
+    padding: 3px;
+    border: 1px solid ${Colors.accent};
+    align-self: flex-start;
+    border-radius: 3px;
+  `
+
+  const ChipText = styled.Text`
+    font-size: 12px;
+    color: white;
+  `
+  return (
+    <ChipContainer
+      style={{
+        shadowOpacity: 1,
+        shadowRadius: 2,
+        shadowColor: 'rgba(30, 209, 194, 1)',
+        shadowOffset: {
+          height: 3,
+          width: -3
+        }
+      }}
+    >
+      <ChipText>{children}</ChipText>
+    </ChipContainer>
+  )
+}
 export default MoviesDetail

@@ -40,7 +40,7 @@ class Tmdb {
     }
   }
 
-  async getPremiereMovies(page = 1, language = 'en-US') {
+  async getPremiereMovies(page = 1, language = 'es_MX') {
     try {
       const premieres = await axios.get('/movie/upcoming', {
         params: {
@@ -51,6 +51,20 @@ class Tmdb {
       return premieres.data
     } catch (err) {
       return err.message
+    }
+  }
+
+  async getPopularTv(page = 1, language = 'es_MX') {
+    try {
+      const popular = await axios.get('/tv/popular', {
+        params: {
+          page,
+          language
+        }
+      })
+      return popular.data
+    } catch (err) {
+      err.message
     }
   }
 }
